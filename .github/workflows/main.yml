@@ -15,7 +15,7 @@ on:
 jobs:
 
   # This will send message to Telegram
-  build:
+  telegram-notify:
     name: Send notification to Telegram
     runs-on: ubuntu-latest
 
