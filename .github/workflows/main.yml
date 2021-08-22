@@ -24,12 +24,24 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
       - name: Setup Python v${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
+
       - name: Python version
-        run: python --version
+        run: python3 --version
+
+      - name: Run script
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_TO }}
+          GITHUB_ISSUE_BODY: ${{ github.event.issue.body }}
+          TELEGRAM_MESSAGE_TEMPLATE: ✔ Тикет [${{ github.event.issue.title }}](${{ github.event.issue.html_url }}) закрыт
+          TELEGRAM_PARSE_MODE: MarkdownV2
+          TELEGRAM_ALLOW_SENDING_WITHOUT_REPLY: True
+        run: python3 send_telegram.py
       
       #- uses: actions/checkout@master
       #- name: Telegram Notify
