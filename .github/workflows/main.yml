@@ -33,5 +33,5 @@ jobs:
         env:
           TELEGRAM_REPLY_TO_MESSAGE_ID: 821
         run: |
-          curl -X POST -H 'Content-Type: application/json' -d '{"chat_id": "${{ secrets.TELEGRAM_TO }}", "text": "Test reply", "reply_to_message_id": $TELEGRAM_REPLY_TO_MESSAGE_ID, "allow_sending_without_reply": true}' https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage
+          curl -X POST -H 'Content-Type: application/json' -d '{"chat_id": "${{ secrets.TELEGRAM_TO }}", "text": "Test reply", "reply_to_message_id": '$TELEGRAM_REPLY_TO_MESSAGE_ID', "allow_sending_without_reply": true}' https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage
         
