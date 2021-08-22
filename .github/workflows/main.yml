@@ -27,4 +27,5 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
           message: Issue [${{ github.event.issue.title }}](${{ github.event.issue.html_url }}) is closed!
