@@ -18,9 +18,19 @@ jobs:
   telegram-notify:
     name: Send notification to Telegram
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7]
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python v${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Python version
+        run: python --version
+      
       #- uses: actions/checkout@master
       #- name: Telegram Notify
       #  uses: appleboy/telegram-action@master
@@ -29,18 +39,19 @@ jobs:
       #    token: ${{ secrets.TELEGRAM_TOKEN }}
       #    format: markdown
       #    message: Issue [${{ github.event.issue.title }}](${{ github.event.issue.html_url }}) is closed!
-      - name: Telegram Notify
-        env:
-          TELEGRAM_PARSE_MODE: MarkdownV2
-          TELEGRAM_ALLOW_SENDING_WITHOUT_REPLY: true
-          TELEGRAM_REPLY_TO_MESSAGE_ID: 821
-        run: >
-          curl -X POST -H 'Content-Type: application/json'
-          --data '{
-          "chat_id": "${{ secrets.TELEGRAM_TO }}",
-          "text": "✔ Тикет [${{ github.event.issue.title }}](${{ github.event.issue.html_url }}) закрыт",
-          "reply_to_message_id": 821,
-          "allow_sending_without_reply": true,
-          "parse_mode": "MarkdownV2"
-          }'
-          https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage
+      
+      #- name: Telegram Notify
+      #  env:
+      #    TELEGRAM_PARSE_MODE: MarkdownV2
+      #    TELEGRAM_ALLOW_SENDING_WITHOUT_REPLY: true
+      #    TELEGRAM_REPLY_TO_MESSAGE_ID: 821
+      #  run: >
+      #    curl -X POST -H 'Content-Type: application/json'
+      #    --data '{
+      #    "chat_id": "${{ secrets.TELEGRAM_TO }}",
+      #    "text": "✔ Тикет [${{ github.event.issue.title }}](${{ github.event.issue.html_url }}) закрыт",
+      #    "reply_to_message_id": 821,
+      #    "allow_sending_without_reply": true,
+      #    "parse_mode": "MarkdownV2"
+      #    }'
+      #    https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage
