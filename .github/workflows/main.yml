@@ -31,7 +31,7 @@ jobs:
       #    message: Issue [${{ github.event.issue.title }}](${{ github.event.issue.html_url }}) is closed!
       - name: Telegram Notify
         env:
-          TELEGRAM_PARSE_MODE: HTML
+          TELEGRAM_PARSE_MODE: MarkdownV2
           TELEGRAM_ALLOW_SENDING_WITHOUT_REPLY: true
           TELEGRAM_REPLY_TO_MESSAGE_ID: 821
         run: |
@@ -39,7 +39,7 @@ jobs:
                --data '                                                                                                                   \
                  {                                                                                                                        \
                    "chat_id": "${{ secrets.TELEGRAM_TO }}",                                                                               \
-                   "text": "Тикет <a href=\"${{ github.event.issue.html_url }}\">${{ github.event.issue.title }}</a> закрыт!",            \
+                   "text": "✔ Тикет [${{ github.event.issue.title }}](${{ github.event.issue.html_url }}) закрыт",                        \
                    "reply_to_message_id": '${TELEGRAM_REPLY_TO_MESSAGE_ID}',                                                              \
                    "allow_sending_without_reply": '${TELEGRAM_ALLOW_SENDING_WITHOUT_REPLY}',                                              \
                    "parse_mode": "'${TELEGRAM_PARSE_MODE}'"                                                                               \
