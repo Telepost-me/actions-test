@@ -36,12 +36,11 @@ jobs:
           TELEGRAM_REPLY_TO_MESSAGE_ID: 821
         run: >
           curl -X POST -H 'Content-Type: application/json'
-               --data '
-                 {
-                   "chat_id": "${{ secrets.TELEGRAM_TO }}",
-                   "text": "✔ Тикет [${{ github.event.issue.title }}](${{ github.event.issue.html_url }}) закрыт",
-                   "reply_to_message_id": 821,
-                   "allow_sending_without_reply": true,
-                   "parse_mode": "MarkdownV2"
-                 }'
-               https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage
+          --data '{
+          "chat_id": "${{ secrets.TELEGRAM_TO }}",
+          "text": "✔ Тикет [${{ github.event.issue.title }}](${{ github.event.issue.html_url }}) закрыт",
+          "reply_to_message_id": 821,
+          "allow_sending_without_reply": true,
+          "parse_mode": "MarkdownV2"
+          }'
+          https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage
