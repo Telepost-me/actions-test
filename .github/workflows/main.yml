@@ -21,11 +21,17 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@master
+      #- uses: actions/checkout@master
+      #- name: Telegram Notify
+      #  uses: appleboy/telegram-action@master
+      #  with:
+      #    to: ${{ secrets.TELEGRAM_TO }}
+      #    token: ${{ secrets.TELEGRAM_TOKEN }}
+      #    format: markdown
+      #    message: Issue [${{ github.event.issue.title }}](${{ github.event.issue.html_url }}) is closed!
       - name: Telegram Notify
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          format: markdown
-          message: Issue [${{ github.event.issue.title }}](${{ github.event.issue.html_url }}) is closed!
+        env:
+          TELEGRAM_REPLY_TO_MESSAGE_ID: 821
+        run: |
+          curl -X POST -H 'Content-Type: application/json' -d '{"chat_id": "${{ secrets.TELEGRAM_TO }}", "text": "Test reply", "reply_to_message_id": ${TELEGRAM_REPLY_TO_MESSAGE_ID}, "allow_sending_without_reply": true}' https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage
+        
