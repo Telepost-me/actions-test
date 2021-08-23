@@ -36,7 +36,7 @@ jobs:
       - name: Python version
         run: python3 --version
 
-      - name: Parse Github issue & Send notification to Telegram
+      - name: Parse Github issue & Send notification to Telegram [${{ github.event_name }}]
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
