@@ -41,7 +41,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           GITHUB_ISSUE_BODY: ${{ github.event.issue.body }}
-          TELEGRAM_MESSAGE_TEMPLATE: "ℹ️ Тикет [${{ github.event.issue.title }}](${{ github.event.issue.html_url }}) — статус: `${{ github.event.issue.state }}`\n💬 `${{ github.event.issue.comments }}` ❘ 🏷 `${{ join(github.event.issue.labels.*.name, ',') }}`"
+          TELEGRAM_MESSAGE_TEMPLATE: "ℹ️ Тикет [${{ github.event.issue.title }}](${{ github.event.issue.html_url }})\nСтатус: `${{ github.event.issue.state }}`"
           TELEGRAM_PARSE_MODE: MarkdownV2
           TELEGRAM_ALLOW_SENDING_WITHOUT_REPLY: True
         run: python3 send_telegram.py
