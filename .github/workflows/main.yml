@@ -7,6 +7,7 @@ on:
   # Triggers the workflow when issue is closed
   issues:
     types:
+      - open
       - closed
 
   # Allows you to run this workflow manually from the Actions tab
@@ -38,7 +39,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           GITHUB_ISSUE_BODY: ${{ github.event.issue.body }}
-          TELEGRAM_MESSAGE_TEMPLATE: ☑️ Тикет [${{ github.event.issue.title }}](${{ github.event.issue.html_url }}) закрыт
+          TELEGRAM_MESSAGE_TEMPLATE: "ℹ️ Тикет [${{ github.event.issue.title }}](${{ github.event.issue.html_url }}) — статус: `${{ github.event.issue.state }}`"
           TELEGRAM_PARSE_MODE: MarkdownV2
           TELEGRAM_ALLOW_SENDING_WITHOUT_REPLY: True
         run: python3 send_telegram.py
