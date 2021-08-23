@@ -7,8 +7,8 @@ import json
 import time
 
 
-def parse_telegram_links(issue_body:str):
-    return list(
+def parse_telegram_messages_id(issue_body:str):
+    links = list(
         map(
             # trim symbols '<>' from links
             lambda link: re.sub('<|>', '', link),
@@ -17,8 +17,6 @@ def parse_telegram_links(issue_body:str):
         )
     )
 
-
-def get_telegram_message_id(links:list):
     return list(
         map(
             lambda link: link[link.rfind('/')+1:],
@@ -52,7 +50,7 @@ def telegram_send_message(
                 "Content-Type": "application/json"
             }
         )
-        print("-> Request details:")
+        print(f"-> Request details (Message ID {reply_to_message_id}):")
         print(f"URL (full): {request.get_full_url()}")
         print(f"Method: {request.get_method()}")
         print(f"Headers: {request.header_items()}")
@@ -66,13 +64,9 @@ def telegram_send_message(
         print(e)
 
 
-links = parse_telegram_links(os.getenv('GITHUB_ISSUE_BODY'))
-print("-> Parsed links:")
-print(*links, sep='\n')
-print()
 
-messages_id = get_telegram_message_id(links)
-print("-> Messages ID's to reply:")
+messages_id = parse_telegram_messages_id(os.getenv('GITHUB_ISSUE_BODY'))
+print("-> Parsed Messages ID's to reply:")
 print(*messages_id, sep='\n')
 print()
 
