@@ -7,7 +7,9 @@ on:
   # Triggers the workflow when issue is closed
   issues:
     types:
-      - open
+      - opened
+      - reopened
+      - deleted
       - closed
 
   # Allows you to run this workflow manually from the Actions tab
