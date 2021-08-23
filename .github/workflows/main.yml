@@ -35,7 +35,7 @@ jobs:
 
       - name: Parse Github issue & Send notification to Telegram
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           GITHUB_ISSUE_BODY: ${{ github.event.issue.body }}
           TELEGRAM_MESSAGE_TEMPLATE: ☑️ Тикет [${{ github.event.issue.title }}](${{ github.event.issue.html_url }}) закрыт
