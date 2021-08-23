@@ -51,14 +51,14 @@ def telegram_send_message(
             }
         )
         print(f"-> Request details (Message ID {reply_to_message_id}):")
-        print(f"URL (full): {request.get_full_url()}")
-        print(f"Method: {request.get_method()}")
-        print(f"Headers: {request.header_items()}")
-        print(f"Data: {request.data}")
+        print(f"● URL (full): {request.get_full_url()}")
+        print(f"● Method: {request.get_method()}")
+        print(f"● Headers: {request.header_items()}")
+        print(f"● Data: {request.data}")
         
         with urllib.request.urlopen(request) as f:
             response = f.read()
-            print(f"Status: {f.status}")
+            print(f"● Status: {f.status}")
         return response
     except Exception as e:
         print(e)
@@ -79,7 +79,7 @@ for id in messages_id:
         allow_sending_without_reply = os.getenv('TELEGRAM_ALLOW_SENDING_WITHOUT_REPLY'),
         parse_mode = os.getenv('TELEGRAM_PARSE_MODE'),
     )
-    print("Response:")
+    print("-> Response:")
     print(response.decode('utf-8'))
     print()
     time.sleep(1)
