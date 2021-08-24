@@ -25,7 +25,6 @@ jobs:
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       GITHUB_ISSUE_BODY: ${{ github.event.issue.body }}
-      TELEGRAM_MESSAGE_TEMPLATE: "❓ *[${{ github.event.issue.title }}](${{ github.event.issue.html_url }})*\n\nТип: `question`\nСтатус: `${{ github.event.issue.state }}`"
       TELEGRAM_PARSE_MODE: MarkdownV2
       TELEGRAM_ALLOW_SENDING_WITHOUT_REPLY: True
     strategy:
@@ -56,4 +55,7 @@ jobs:
         run: python3 send_telegram.py
 
       - name: Parse Github issue & Send notification to Telegram [question]
+        if: contains(github.event.issue.labels.*.name, 'question')
+        env:
+          TELEGRAM_MESSAGE_TEMPLATE: "❓ *[${{ github.event.issue.title }}](${{ github.event.issue.html_url }})*\n\nТип: `question`\nСтатус: `${{ github.event.issue.state }}`"
         run: python3 send_telegram.py
