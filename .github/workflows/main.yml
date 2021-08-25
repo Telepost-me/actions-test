@@ -28,6 +28,8 @@ jobs:
         python-version: [3.7]
 
     steps:
+      - uses: actions/checkout@v2
+
       - name: Setup Python v${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
