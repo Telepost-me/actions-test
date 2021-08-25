@@ -1,0 +1,1 @@
+![workflow status](https://github.com/Telepost-me/actions-test/actions/workflows/main.yml/badge.svg)
