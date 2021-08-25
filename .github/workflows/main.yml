@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      TELEGRAM_CHAT_ID: "-1001155789634"
       GITHUB_ISSUE_BODY: ${{ github.event.issue.body }}
       TELEGRAM_PARSE_MODE: MarkdownV2
       TELEGRAM_ALLOW_SENDING_WITHOUT_REPLY: True
