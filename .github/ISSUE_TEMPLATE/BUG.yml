@@ -60,8 +60,8 @@ body:
   - type: dropdown
     id: interface
     attributes:
-      label: В каком интерфейсе воспроизволится баг?
-      description: Можно выбрать несколько вариантов
+      label: В каком интерфейсе воспроизводится баг?
+      description: У Телепоста есть [веб-версия](https://app.telepost.me) и [бот](https://t.me/TelepostBot).
       multiple: true
       options:
         - Веб-версия (ниже укажите браузер)
