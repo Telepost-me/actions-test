@@ -20,7 +20,7 @@ body:
     id: how-to-reproduce
     attributes:
       label: Как повторить
-      description: Шаги, с помощью которых можно воспроизвести баг.
+      description: Шаги, с помощью которых можно воспроизвести баг. Добавьте скриншоты, если это возможно.
       value: |
         Шаги, с помощью которых можно воспроизвести баг:
         1. Создаем пост такого-то типа...
@@ -37,12 +37,6 @@ body:
       description: Опишите, что ожидали получить в этом случае (тут вы можете осознать, что может быть это и не баг вовсе, а так было задумано).
     validations:
       required: true
-
-  - type: textarea
-    id: screenshots
-    attributes:
-      label: Скриншоты
-      description: Добавьте скриншоты, если это возможно/уместно — это всегда полезно.
 
   - type: dropdown
     id: post-type
@@ -64,7 +58,7 @@ body:
       required: true
 
   - type: dropdown
-    id: web-bot
+    id: interface
     attributes:
       label: В каком интерфейсе воспроизволится баг?
       description: Можно выбрать несколько вариантов
@@ -77,7 +71,9 @@ body:
     id: browsers
     attributes:
       label: Браузер
-      description: В каких браузерах точно воспроизводится баг (для веб-версии Телепост)?
+      description: |
+        В каких браузерах точно воспроизводится баг (для веб-версии Телепост)?
+        Кстати, вы пробовали в инкогнито-режиме? А плагины (блокировщики рекламы) отключали?
       multiple: true
       options:
         - Google Chrome
