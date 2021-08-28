@@ -6,7 +6,7 @@ labels:
 body:
   - type: markdown
     attributes:
-      value: Спасибо, что нашли время заполнить эту форму!
+      value: Спасибо, что нашли время описать найденную проблему!
 
   - type: textarea
     id: description
